@@ -259,11 +259,22 @@ console.log(utentiAttivi);
 /* SCRIVI QUI LA TUA RISPOSTA */
 
 // esercizio a
+const copiaUtenti = [...utenti]; // per mantenere gli oggetti originali in ordine alfabetico, quindi creo una copia per l' array utenti
 
-const usersCre = utenti.sort((eta1, eta2) => eta1.eta - eta2.eta);
+const usersCre = copiaUtenti.sort((eta1, eta2) => eta1.eta - eta2.eta);
 console.log(usersCre);
 
 // esercizio b
+
+const ordineAlf = utenti.sort((a, b) => {
+  if (a.nome < b.nome) {
+    return -1; // mette nome A prima di nome B
+  } else {
+    return 1; // nome B prima di nome A
+  }
+});
+
+console.log(ordineAlf);
 
 /* ESERCIZIO 15 — Chaining
    Componi una catena di metodi che:
@@ -281,3 +292,29 @@ const chaining = utenti
   .sort();
 
 console.log(chaining);
+
+//EXEC
+
+const tabella = document.querySelector(".js-tbody");
+
+tabella.innerHTML = `       
+          <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Età</th>
+            <th>Città</th>
+          </tr>
+        `;
+
+for (let i = 0; i < utenti.length; i++) {
+  tabella.innerHTML += `
+  <tbody>
+      <tr>
+        <td>${utenti[i].nome}</td>
+        <td>${utenti[i].cognome}</td>
+        <td>${utenti[i].eta}</td>
+        <td>${utenti[i].città}</td>
+      </tr>
+  </tbody>
+    `;
+}
